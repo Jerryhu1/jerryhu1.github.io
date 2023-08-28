@@ -3,6 +3,7 @@ import {Project as ProjectType, golang, typescript, react, websockets, redis} fr
 import Project from "../components/Project";
 import Contacts from "../components/Contacts";
 import Typewriter from "../components/Typewriter";
+import Journey from "../components/Journey";
 
 const HomePage = () => {
   const projects: ProjectType[] = [
@@ -10,25 +11,26 @@ const HomePage = () => {
       name: "Five words",
       description: "Five Words is a word-guessing game. Teams of 2 or more players compete to guess as many words on a card as possible\n" +
         "in 30 seconds. This project idea started during the COVID pandemic when many people started playing online versions of popular board games.",
-      imgURL: "//unsplash.it/500/500",
+      imgURL: "/five-words.png",
       technologies: [golang, typescript, react, websockets, redis],
-      link: ""
+      links: [{link: "https://github.com/Jerryhu1/five-words", logoPath: "/github-mark.svg"}]
     },
     {
       name: "Pool Party Panic",
       description: "Pool Party Panic is a fast-paced 3D management game. You are the Lifeguard of a pool and your task is to prevent your visitors from burning in the sun! " +
         "I worked on this project as a 3D artist. Together with 12 other students we worked on this game for three months. It went viral on Youtube with 10 million+ view and 200k downloads. " +
         "We were also nominated for a Dutch Game Award for Best Student Game Design.",
-      imgURL: "//unsplash.it/500/500",
+      imgURL: "/ppp.png",
       technologies: [{name: "Unity", iconURL: ""}, {name: "C#", iconURL: ""}, {name: "Maya", iconURL: ""}],
-      link: ""
+      links: [{link: "https://outlaws-studio.itch.io/poolpartypanic", logoPath: "/itchio.svg"}]
+
     },
     {
       name: "EvoMusicCompanion",
       description: "EvoMusicCompanion is the ML model I wrote for my master thesis. It uses an Evolutionary Algorithm with a N-gram model for generating music melodies which were trained using a dataset of popular modern melodies",
       imgURL: "//unsplash.it/500/500",
       technologies: [{name: "Python", iconURL: ""}, {name: "Jupyterlab", iconURL: ""}],
-      link: ""
+      links: [{link: "https://github.com/Jerryhu1/MasterThesis", logoPath: "/github-mark.svg"}]
     },
   ]
 
@@ -87,22 +89,37 @@ const HomePage = () => {
   }
   return (
     <div className="w-full">
-      <div className="bg-primary-100 h-screen flex w-full font-serif">
-        <div className="typewriter-text flex p-10 md:p-16 justify-center flex-col text-2xl text-grey-900 w-full text-right">
+      <div
+        className="bg-primary-100 h-screen flex w-full font-serif items-center flex-col lg:flex-row flex-col-reverse justify-end pt-10 lg:p-0">
+        <div
+          className="typewriter-text flex p-10 md:p-16 w-full justify-center flex-col text-2xl text-grey-900 text-right">
           <Typewriter sentences={[
             "Hello!",
-            "I am Jerry, a full-stack developer based in Rotterdam"
+            "I am Jerry, a full-stack developer based in Rotterdam",
+            "Currently, I work for Biller",
+            <div>See some of my <span className="text-primary-500">projects</span></div>,
+            <div>Read my <span className="text-primary-500">blogs</span></div>,
+            "Or just scroll down",
           ]}/>
         </div>
+        <div className="flex justify-center w-full">
+          <img className="rounded-full" src="/profile.jpeg"/>
+        </div>
       </div>
-      <div className="flex flex-col items-center">
-        <h1 className="text-4xl text-center">Projects</h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg-grid-cols-3">
+      <div className="flex flex-col items-center relative h-screen justify-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg-grid-cols-3 md:w-2/3">
+          <div className="bg-gray-100">
+            <h1
+              className="md:text-[100px] text-[50px] text-primary-500 p-6 text-center font-serif tracking-tighter">Projects</h1>
+          </div>
+
           {projects.map(v => (
-            <Project key={v.name} description={v.description} name={v.name} imgURL={v.imgURL}
-                     technologies={v.technologies}/>
+            <Project key={v.name} project={v} links={v.links}/>
           ))}
         </div>
+      </div>
+      <div className="h-screen">
+        <Journey/>
       </div>
       <Contacts/>
 

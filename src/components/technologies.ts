@@ -1,9 +1,15 @@
 
+export interface Link {
+  logoPath?: string
+  link: string
+}
+
+
 interface Project {
   name: string;
   description: string;
   imgURL: string;
-  link: string;
+  links: Link[];
   technologies: Technology[];
 }
 

@@ -4,17 +4,17 @@ import tailwindConfig from "../tailwind.config";
 
 const fullConfig = resolveConfig(tailwindConfig)
 
-export const getTextWidth = (deviceWidth: number): number => {
-  console.log(fullConfig.theme.screens)
+export const getTextWidth = (deviceWidth: number, characterSize?: number = 12, padding?: number = 6): number => {
+  return deviceWidth / characterSize - padding
   if (deviceWidth >= pxAsNumber(fullConfig.theme.screens.lg)) {
     return 60
   } else if (deviceWidth >= pxAsNumber(fullConfig.theme.screens.md)) {
     return 60
   } else if (deviceWidth >= pxAsNumber(fullConfig.theme.screens.sm)) {
-    return 20
+    return 25
   }
 
-  return 15
+  return 20
 }
 
 const pxAsNumber = (value: string) => {

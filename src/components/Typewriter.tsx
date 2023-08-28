@@ -1,18 +1,21 @@
-import {splitText} from "./utils";
+import {extractTextFromNode, splitText} from "./utils";
 import resolveConfig from 'tailwindcss/resolveConfig'
 import tailwindConfig from '../../tailwind.config.js'
 import {getTextWidth} from "./deviceWidth";
-import React, {ReactNode, useEffect, useState} from "react";
+import React, {ReactElement, ReactNode, useEffect, useState} from "react";
 
 type Props = {
-  text: string
+  text: ReactNode
+  startDelay?: number
+  size?: string
+  background?: string
 }
 
-const Line = ({text, startDelay = 0}: { text: string, startDelay?: number }) => {
+const Line = ({text, size = '20px', startDelay = 0, background = '#E8EDE3'}: Props) => {
   // eslint-disable-next-line no-restricted-globals
   const width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-  const [sentences, setSentences] = useState<string[]>(splitText(text, getTextWidth(width)))
-
+  console.log(splitText(extractTextFromNode(text), getTextWidth(width)))
+  const [sentences, setSentences] = useState<string[]>(splitText(extractTextFromNode(text), getTextWidth(width)))
   useEffect(() => {
     window.addEventListener('resize', handleResize);
     return () => {
@@ -25,7 +28,7 @@ const Line = ({text, startDelay = 0}: { text: string, startDelay?: number }) => 
     // eslint-disable-next-line no-restricted-globals
     const width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
     const textWidth = getTextWidth(width)
-    setSentences(splitText(text, textWidth))
+    setSentences(splitText(extractTextFromNode(text), textWidth))
   }
 
   const lettersPerSecond = 20
@@ -40,31 +43,44 @@ const Line = ({text, startDelay = 0}: { text: string, startDelay?: number }) => 
     }
   })
 
+  //TODO: make this work for nested elements
   return (
     <>
       {sentences.map((s, i) => (
-        <div className="typewriter">
-          <h1 className="break-words" style={{
+        <div className="typewriter" key={i}>
+          <div className="break-words" style={{
+            "--size": size,
+            "--bg-color": background,
             "--type-len": s.length,
             "--type-time": `${timings[i].time}s`,
             "--type-delay": `${timings[i].delay}s`,
             width: "max-content"
           } as React.CSSProperties}>
             {s}
-          </h1>
+          </div>
         </div>
       ))}
     </>
   )
 }
 
-const Typewriter = ({sentences}: { sentences: string[] }) => {
-  const delays = sentences.map(s => s.length)
+
+const Typewriter = ({sentences, size, background}: {
+  sentences: ReactNode[], startDelay?: number
+  size?: string
+  background?: string
+}) => {
+  const delays: number[] = []
+  const lengths = sentences.map(s => extractTextFromNode(s).length)
+    .reduce((acc, curr, i) => {
+      delays.push(acc)
+      return acc + curr
+    })
 
   return (
     <>
       {sentences.map((s, i) =>
-        <Line text={s} startDelay={i !== 0 ? delays[i - 1] : 0}/>
+        <Line size={size} background={background} text={s} startDelay={i > 0 ? delays[i - 1] : 0}/>
       )}
     </>
   )

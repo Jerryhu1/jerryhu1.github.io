@@ -2,11 +2,9 @@ import React from "react"
 
 const Contacts = () => {
   return (
-    <div className="contact container-fullwidth">
-      <div className="contact-content">
-        <div className="contact-header header">
-          <h1>Send me a message!</h1>
-        </div>
+    <div className="flex w-full bg-primary-100 justify-center text-primary-500 py-10">
+      <div className="md:w-1/2">
+        <span className="text-2xl font-serif">Send me a message!</span>
         <div className="contact-form-container">
           <form className="contact-form">
             <ul className="contact-form-outer">

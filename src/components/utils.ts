@@ -1,3 +1,20 @@
+import React, {ReactElement, ReactNode} from "react";
+
+export const extractTextFromNode = (node: ReactNode): string => {
+  if (typeof node === 'string' || typeof node === 'number') {
+    // If the node is a string or number, return it as-is
+    return node.toString();
+  }
+
+  if (React.isValidElement(node)) {
+    // If the node is a React element, extract text content from its children
+    const children = React.Children.toArray(node.props.children);
+    return children.map(extractTextFromNode).join('');
+  }
+
+  return ''
+}
+
 
 export const splitText = (text: string, width: number): string[] => {
   let words = text.split(" ")
@@ -31,3 +48,9 @@ export const splitText = (text: string, width: number): string[] => {
   return result
 }
 
+//
+// const splitElements = (text: ReactNode, width: number): ReactNode[] => {
+//   for (let i = 0; i < text; i++) {
+//
+//   }
+// }

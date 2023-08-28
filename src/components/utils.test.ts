@@ -11,4 +11,14 @@ describe("utils.ts", () => {
     ])
 
   })
+
+  it("should split long sentence", () => {
+    const res = splitText("I am Jerry a full-stack developer based in Rotterdam", 15)
+    expect(res).toEqual([
+      "I am ",
+      "long line",
+      "that should",
+      "be split",
+    ])
+  })
 })

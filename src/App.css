@@ -54,57 +54,6 @@ body {
   flex-direction: column;
   color: #353633;
 }
-
-.about-me {
-  padding: 0 50px 0 50px;
-}
-
-.about-me-header {
-  margin-bottom: 20px;
-}
-
-.about-me-header h1 {
-  margin-bottom: 0px;
-  text-transform: uppercase;
-  letter-spacing: .02em;
-  color: #20917B;
-
-}
-
-.about-me-header span {
-  color: grey;
-}
-
-.projects {
-  height: 100vh;
-  background-color: #ecf0f1;
-  color: #34495e;
-  display: block;
-  width: 100%;
-  overflow-x: hidden;
-
-}
-
-.projects-content {
-  width: 100%;
-  padding: 2rem 10rem 2rem 5rem;
-}
-
-.projects-header {
-  padding-left: 50px;
-}
-
-/**/
-
-.project-item-card {
-  width: 100%;
-  display: flex;
-}
-
-.project-item-content {
-  padding: 2em;
-}
-
 .contact-form {
   display: flex;
   flex-direction: column;
@@ -136,7 +85,7 @@ body {
   max-width: 220px;
   text-transform: uppercase;
   letter-spacing: .04em;
-  padding: 8px;
+  padding: 8px 8px 8px 0;
 }
 
 .contact-form-outer > li > input,
@@ -156,18 +105,19 @@ body {
   margin-left: auto;
   padding: 8px 16px;
   border: none;
-  background: #20917B;
-  color: #ecf0f1;
+  background: theme('colors.primary.500');
+  color: theme('colors.grey.100');
   letter-spacing: .09em;
   text-transform: uppercase;
 }
 
-.typewriter h1 {
+.break-words {
   font-family: Inconsolata;
   position: relative;
+  font-size: var(--size);
 }
 
-.typewriter h1::before {
+.break-words::before {
   content: '';
   top: 0;
   right: 0;
@@ -176,8 +126,8 @@ body {
   position: absolute;
 }
 
-.typewriter h1::before {
-  background: theme('colors.primary.100');
+.break-words::before {
+  background: var(--bg-color);
   animation: typing var(--type-time) steps(var(--type-len)) forwards;
   animation-delay: var(--type-delay)
 }
@@ -197,6 +147,24 @@ body {
 
 .link-hover-effect:hover {
   color: var(--ifm-color-primary-dark);
+}
+
+.project-item-content {
+  color: theme('colors.grey.100');
+  position: absolute;
+  display: flex;
+  content: '';
+  width: 100%;
+  height: 0;
+  left: 0;
+  bottom: 0;
+  box-sizing: border-box;
+  transition: height 0.5s ease-out;
+  overflow: hidden;
+}
+
+.project-item-card:hover .project-item-content {
+  height: 100%;
 }
 
 /*@keyframes typing {*/
