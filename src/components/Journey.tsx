@@ -4,8 +4,8 @@ const Journey = () => {
       time: "2022 ‑ present",
       title: "Full-stack Engineer",
       company: "Biller",
-      description: "Developing an innovative Buy Now Pay Later payment method. Launched an new version of the payment page, the\n" +
-        "Seller Portal and Buyer Portal. Implemented and developed a design system and component library.",
+      description: "Developing an innovative Buy Now Pay Later payment method. Launched an new version of the payment page, implemented new features in the\n" +
+        "Seller Portal. Implemented a design system and component library.",
       technologies: ["Python", "React", "Typescript", "TailwindCSS", "Next.js", "Django"]
     },
     {

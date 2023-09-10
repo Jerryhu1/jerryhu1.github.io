@@ -8,11 +8,18 @@ import Journey from "../components/Journey";
 const HomePage = () => {
   const projects: ProjectType[] = [
     {
+      name: "Biller Payment Page",
+      description: "I implemented the Payment Page of Biller a Buy-Now-pay-Later payment method. This page is the main contact point for users of the payment provider. I lead the implementation and worked together with designers and product managers on creating the best experience for our users.",
+      imgURL: "/biller.png",
+      technologies: ["Typescript", "React", "Next.js", "Python", "Django"],
+      links: []
+    },
+    {
       name: "Five words",
       description: "Five Words is a word-guessing game. Teams of 2 or more players compete to guess as many words on a card as possible\n" +
         "in 30 seconds. This project idea started during the COVID pandemic when many people started playing online versions of popular board games.",
       imgURL: "/five-words.png",
-      technologies: [golang, typescript, react, websockets, redis],
+      technologies: ["Golang", "Typescript", "React", "Websockets", "Redis"],
       links: [{link: "https://github.com/Jerryhu1/five-words", logoPath: "/github-mark.svg"}]
     },
     {
@@ -21,23 +28,21 @@ const HomePage = () => {
         "I worked on this project as a 3D artist. Together with 12 other students we worked on this game for three months. It went viral on Youtube with 10 million+ view and 200k downloads. " +
         "We were also nominated for a Dutch Game Award for Best Student Game Design.",
       imgURL: "/ppp.png",
-      technologies: [{name: "Unity", iconURL: ""}, {name: "C#", iconURL: ""}, {name: "Maya", iconURL: ""}],
+      technologies: ["Unity", "Maya", "C#"],
       links: [{link: "https://outlaws-studio.itch.io/poolpartypanic", logoPath: "/itchio.svg"}]
 
     },
     {
       name: "EvoMusicCompanion",
-      description: "EvoMusicCompanion is the ML model I wrote for my master thesis. It uses an Evolutionary Algorithm with a N-gram model for generating music melodies which were trained using a dataset of popular modern melodies",
+      description: "EvoMusicCompanion is a musical melody generator which I wrote for my Master thesis. I researched and developed this generator by using an evolutionary algorithm and N-grams. I trained the model using a corpus of pop melodies.",
       imgURL: "//unsplash.it/500/500",
-      technologies: [{name: "Python", iconURL: ""}, {name: "Jupyterlab", iconURL: ""}],
+      technologies: ["Python", "Jupyterlab"],
       links: [{link: "https://github.com/Jerryhu1/MasterThesis", logoPath: "/github-mark.svg"}]
     },
   ]
 
   useEffect(() => {
     window.addEventListener("scroll", ev => {
-      window.scrollY
-      window.scrollTo()
     })
   }, [])
 
@@ -67,7 +72,7 @@ const HomePage = () => {
           <img className="rounded-full mx-auto lg:mx-0" src="/profile.jpeg"/>
         </div>
       </div>
-      <div ref={projectRef} className="flex flex-col items-center relative h-full md:h-screen justify-center container">
+      <div ref={projectRef} className="relative min-h-screen m-auto grid place-items-center">
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
           <div className="p-10 md:p-20">
             <span
@@ -82,7 +87,7 @@ const HomePage = () => {
           ))}
         </div>
       </div>
-      <div ref={experienceRef} className="h-full md:h-screen">
+      <div ref={experienceRef} className="min-h-screen">
         <Journey/>
       </div>
       <div ref={contactRef}>

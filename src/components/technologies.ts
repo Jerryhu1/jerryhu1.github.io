@@ -10,7 +10,7 @@ interface Project {
   description: string;
   imgURL: string;
   links: Link[];
-  technologies: Technology[];
+  technologies: string[];
 }
 
 interface Technology {

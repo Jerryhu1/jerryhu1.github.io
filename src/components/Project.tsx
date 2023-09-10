@@ -33,7 +33,7 @@ const Project = ({
         <div className='px-6'>
           <div className="flex gap-2 mt-4 flex-wrap">
             {technologies.map((v, i) => (
-              <Pill key={v.name}>{v.name}</Pill>
+              <Pill key={v}>{v}</Pill>
             ))}
           </div>
         </div>
