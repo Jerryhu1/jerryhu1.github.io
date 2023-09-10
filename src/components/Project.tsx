@@ -23,7 +23,7 @@ const Project = ({
     <div className="group project-item-card relative flex items-center justify-center">
       <div className="project-item-content bg-primary-600/90 z-10 flex flex-col overflow-y-auto md:overflow-hidden">
         <div className="pt-6 px-6">
-          <div className="2lg:text-[100px] text-[50px] font-bold font-serif">
+          <div className="2lg:text-[100px] md:text-[50px] text-[20px] font-bold font-serif">
             {name}
           </div>
           <div>

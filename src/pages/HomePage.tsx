@@ -61,7 +61,7 @@ const HomePage = () => {
           className="typewriter-text flex p-10 md:p-16 w-full justify-center lg:items-end flex-col text-2xl text-grey-900 text-right container">
           <Typewriter sentences={[
             "Hello!",
-            "I am Jerry, a full-stack developer based in Rotterdam",
+            "I am Jerry, a full-stack engineer based in Rotterdam",
             "Currently, I work for Biller",
             <div>See some of my <span className="text-primary-500">projects</span></div>,
             <div>Read my <span className="text-primary-500">blogs</span></div>,
