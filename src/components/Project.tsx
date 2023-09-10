@@ -1,5 +1,6 @@
 import React from "react";
 import {Link, Project as ProjectModel, Technology} from "./technologies";
+import Pill from "./Pill";
 
 type Props = {
   project: ProjectModel
@@ -19,8 +20,8 @@ const Project = ({
     description
   } = project
   return (
-    <div className="group project-item-card relative flex">
-      <div className="project-item-content bg-primary-500/70 z-10 flex flex-col">
+    <div className="group project-item-card relative flex items-center justify-center">
+      <div className="project-item-content bg-primary-600/90 z-10 flex flex-col overflow-y-auto md:overflow-hidden">
         <div className="pt-6 px-6">
           <div className="2lg:text-[100px] text-[50px] font-bold font-serif">
             {name}
@@ -30,24 +31,23 @@ const Project = ({
           </div>
         </div>
         <div className='px-6'>
-          <h3 style={{marginTop: "2em"}}>Technologies used</h3>
-          <ul>
+          <div className="flex gap-2 mt-4 flex-wrap">
             {technologies.map((v, i) => (
-              <li key={v.name}>{v.name}</li>
+              <Pill key={v.name}>{v.name}</Pill>
             ))}
-          </ul>
+          </div>
         </div>
-        <div className='p-8 flex justify-center grow items-end '>
+        <div className='p-8 flex justify-center grow items-end'>
           {links.map(l => (
             <a href={l.link} target="_blank">
-              <img src={l.logoPath} className="w-14 h-14"/>
+              <img src={l.logoPath} className="w-11 h-11"/>
             </a>
           ))}
         </div>
 
       </div>
       <img src={imgURL}
-           className="w-full h-full grayscale group-hover:grayscale-0 transition-all ease-in duration-300"/>
+           className="w-[500px] grayscale group-hover:grayscale-0 transition-all ease-in duration-300 aspect-square object-cover"/>
 
     </div>
   )

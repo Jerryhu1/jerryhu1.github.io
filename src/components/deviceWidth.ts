@@ -11,7 +11,7 @@ export const getTextWidth = (deviceWidth: number, characterSize?: number = 12, p
   } else if (deviceWidth >= pxAsNumber(fullConfig.theme.screens.md)) {
     return 60
   } else if (deviceWidth >= pxAsNumber(fullConfig.theme.screens.sm)) {
-    return 25
+    return 30
   }
 
   return 20

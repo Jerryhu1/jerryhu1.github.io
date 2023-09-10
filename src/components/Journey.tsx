@@ -36,18 +36,20 @@ const Journey = () => {
   ]
 
   return (
-    <div className="w-full flex p-20 gap-20">
-      <div>
+    <div className="w-full flex md:gap-20 flex-col md:flex-row p-10 md:p-20">
+      <div className="">
         <p className="text-[50px] font-serif">Experience</p>
-        <img src="/linkedin.png"/>
+        <a href="https://www.linkedin.com/in/jerry-hu/" target="_blank"  className="w-fit block">
+          <img className="w-11" src="/linkedin.png" alt="linkedin"/>
+        </a>
       </div>
       <div className="md:w-1/2 flex flex-col gap-10">
         {experience.map(e => (
-          <div className="flex flex-row px-10">
+          <div className="flex flex-col md:flex-row">
             <span className="text-grey-600  w-1/4">
               {e.time}
             </span>
-            <div className="w-3/4">
+            <div className="md:w-3/4">
               <div className="font-bold">{e.title}</div>
               <div className="font-bold text-grey-700">{e.company}</div>
               <div>

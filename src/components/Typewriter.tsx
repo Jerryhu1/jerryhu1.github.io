@@ -71,7 +71,7 @@ const Typewriter = ({sentences, size, background}: {
   background?: string
 }) => {
   const delays: number[] = []
-  const lengths = sentences.map(s => extractTextFromNode(s).length)
+  sentences.map(s => extractTextFromNode(s).length)
     .reduce((acc, curr, i) => {
       delays.push(acc)
       return acc + curr

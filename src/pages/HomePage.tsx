@@ -1,4 +1,4 @@
-import React, {ReactElement} from "react"
+import React, {ReactElement, useEffect, useRef, useState} from "react"
 import {Project as ProjectType, golang, typescript, react, websockets, redis} from "../components/technologies";
 import Project from "../components/Project";
 import Contacts from "../components/Contacts";
@@ -34,65 +34,26 @@ const HomePage = () => {
     },
   ]
 
-  // TODO: Find length dynamically
-  const introText = [
-    {content: <>Hello!</>, length: 6},
-    {content: <>I am Jerry, a full-stack developer based in Rotterdam</>, length: 53},
-    {content: <>Currently, I am working for bol.com</>, length: 35},
-    {content: <>See some of my <span className="link-hover-effect">projects</span></>, length: 23},
-    {content: <>Read my <span className="project-link-hover">blogs</span></>, length: 13},
-    {content: <>Or just scroll down!</>, length: 20}
-  ]
+  useEffect(() => {
+    window.addEventListener("scroll", ev => {
+      window.scrollY
+      window.scrollTo()
+    })
+  }, [])
 
-  const typewriter = (delay: number, seconds: number, length: number) => {
-    return {
+  const projectRef = useRef(null)
+  const homeRef = useRef(null)
+  const contactRef = useRef(null)
+  const experienceRef = useRef(null)
 
-      background: "teal",
-      animation: `typing ${seconds}s ${delay} steps(${length}) forwards`,
-    }
-  }
+  const [currentScrollPosition, setCurrentScrollPosition] = useState(window.scrollY)
 
-  const lettersPerSecond = 20
-  let delayCumulative = 0.0
-  const timings = introText.map((v, i) => {
-    let delay = 0
-    const time = v.length / lettersPerSecond
-    if (i !== 0) {
-      delay = delayCumulative
-    }
-    delayCumulative += time
-    return {
-      time: time,
-      delay: delay
-    }
-  })
-  const typewriterComponent = () => {
-    return (
-      <>
-        {
-          introText.map((v, i) => (
-              <div className="typewriter">
-                <h1 className="break-words" style={{
-                  "--type-len": v.length,
-                  "--type-time": `${timings[i].time}s`,
-                  "--type-delay": `${timings[i].delay}s`,
-                  width: "max-content"
-                } as React.CSSProperties}>
-                  {v.content}
-                </h1>
-              </div>
-            )
-          )
-        }
-      </>
-    )
-  }
   return (
     <div className="w-full">
-      <div
-        className="bg-primary-100 h-screen flex w-full font-serif items-center flex-col lg:flex-row flex-col-reverse justify-end pt-10 lg:p-0">
+      <div ref={homeRef}
+           className="bg-primary-100 h-screen flex w-full font-serif items-center flex-col lg:flex-row flex-col-reverse justify-center">
         <div
-          className="typewriter-text flex p-10 md:p-16 w-full justify-center flex-col text-2xl text-grey-900 text-right">
+          className="typewriter-text flex p-10 md:p-16 w-full justify-center lg:items-end flex-col text-2xl text-grey-900 text-right container">
           <Typewriter sentences={[
             "Hello!",
             "I am Jerry, a full-stack developer based in Rotterdam",
@@ -102,15 +63,18 @@ const HomePage = () => {
             "Or just scroll down",
           ]}/>
         </div>
-        <div className="flex justify-center w-full">
-          <img className="rounded-full" src="/profile.jpeg"/>
+        <div className="w-full">
+          <img className="rounded-full mx-auto lg:mx-0" src="/profile.jpeg"/>
         </div>
       </div>
-      <div className="flex flex-col items-center relative h-screen justify-center">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg-grid-cols-3 md:w-2/3">
-          <div className="bg-gray-100">
-            <h1
-              className="md:text-[100px] text-[50px] text-primary-500 p-6 text-center font-serif tracking-tighter">Projects</h1>
+      <div ref={projectRef} className="flex flex-col items-center relative h-full md:h-screen justify-center container">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+          <div className="p-10 md:p-20">
+            <span
+              className="md:text-[70px] text-[50px] text-center font-serif tracking-tighter">Projects</span>
+            <a href="https://github.com/Jerryhu1" target="_blank" className="w-fit block">
+              <img className="w-11" src="/github-mark.svg" alt="linkedin"/>
+            </a>
           </div>
 
           {projects.map(v => (
@@ -118,11 +82,12 @@ const HomePage = () => {
           ))}
         </div>
       </div>
-      <div className="h-screen">
+      <div ref={experienceRef} className="h-full md:h-screen">
         <Journey/>
       </div>
-      <Contacts/>
-
+      <div ref={contactRef}>
+        <Contacts/>
+      </div>
     </div>
   )
 }
